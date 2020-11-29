@@ -1,0 +1,23 @@
+{
+  "name": "ts-node-discord-bot-starter",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon bot.ts"
+  },
+  "author": "Chance Linz <clinz.dev@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.0.2",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.1",
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}
