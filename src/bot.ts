@@ -1,23 +1,26 @@
-import { Client as DiscordClient, Message } from 'discord.js'
+import BlizzardApiClient from 'blizzapi'
+import { Client as DiscordClient } from 'discord.js'
 
-import { shouldRespond } from './utils'
+import { fetchLatestAuctionHousePricesOnInterval } from './actions'
 
 // Initialize client
-const bot = new DiscordClient()
+const discordClient = new DiscordClient()
 
-bot.login(process.env.TOKEN)
+// Initialize Blizzard API client
+const region = process.env.BLIZZARD_API_REGION as string
+const clientId = process.env.BLIZZARD_API_CLIENT_ID as string
+const clientSecret = process.env.BLIZZARD_API_CLIENT_SECRET as string
 
-bot.on('ready', () => {
-    console.log(`${bot?.user?.tag} initialized and ready to go 🚀`)
-})
+const blizzardApiClient = new BlizzardApiClient({
+    region,
+    clientId,
+    clientSecret
+});
 
-bot.on('message', (message: Message) => {
-    const authorId = message.author.id
-    const content = message.content
+discordClient.login(process.env.DISCORD_BOT_USER_TOKEN)
 
-    console.log({ authorId, content })
+discordClient.on('ready', () => {
+    console.log(`${discordClient?.user?.tag} initialized and ready to go 🤖`)
 
-    if (shouldRespond(content)) {
-        message.reply('That is great.')
-    }
+    fetchLatestAuctionHousePricesOnInterval(discordClient, blizzardApiClient)
 })

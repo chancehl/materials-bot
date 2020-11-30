@@ -9,7 +9,8 @@
   "author": "Chance Linz <clinz.dev@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.0.2",
+    "blizzapi": "^1.3.3",
+    "discord.js": "^12.5.1",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
